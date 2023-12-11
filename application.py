@@ -27,8 +27,8 @@ def index():
           DRIVER_PATH = r"chromedriver.exe"
           driver = webdriver.Chrome(DRIVER_PATH)
           searchString = request.form['content'].replace(" ","")
-          # Navigate to the URL
-          driver.get("https://www.myntra.com/kurta?rawQuery="+searchString)
+	  url = f"https://www.myntra.com/{searchString}?rawQuery={searchString}"
+          driver.get(url)
           myntra_text = driver.page_source
           myntra_html = bs(myntra_text, "html.parser")
           pclass=myntra_html.findAll("ul", {"class": "results-base"})
